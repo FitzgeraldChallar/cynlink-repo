@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "@/components/ui/button"
+import Container from "@/components/container";
 
 const Home = () => {
   return (
-    <div className="p-10 bg-shop_light_pink">
+    <Container className="bg-shop_light_pink">
       <h2 className="text-xl font-semibold">Home</h2>
       <p>
         Lorem50 
@@ -13,7 +14,7 @@ const Home = () => {
         Nullam ac erat ante.  
       </p>
       <Button>Check me out!</Button>
-    </div>
+    </Container>
   );
 };
 
