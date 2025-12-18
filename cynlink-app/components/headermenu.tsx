@@ -18,6 +18,7 @@ function HeaderMenu() {
             hoverEffect
             relative
             group
+            font-sans
             ${pathname === item?.href ? "text-shop_light_gold" : ""}
           `}
         >

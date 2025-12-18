@@ -9,12 +9,15 @@
   --color-shop_gold: #B8860B;
   --color-shop_btn_dark_green:#063d29;
   --color-shop_light_bg: #f6f6f6;
-  --color-shop_light_green: 3b9c3c;
+  --color-shop_light_green: #3b9c3c;
   --color-shop_light_gold: #FFD700;
   --color-shop_orange:  #fb6c08;
   --color-lightColor: #52525b;
   --color-darkColor: #151515;
   --color-lightOrange: #fca99b;
+  --color-banner-bg: #FAF6F0;
+  --color-shop-charcoal: #1F2933;
+
 }
 
 @theme inline {
@@ -59,6 +62,7 @@
 }
 
 :root {
+  --font-poppins: 'Poppins', 'sanserif';
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -136,5 +140,8 @@
   }
   .hoverEffect {
     @apply transition-all duration-300 ease-in-out;
+  }
+  button{
+    @apply hover:cursor-pointer;
   }
 }
