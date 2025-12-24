@@ -6,17 +6,17 @@
 @theme {
   --font-poppins: 'Poppins', 'sanserif';
   --color-shop_light_pink: #fcf0e4;
-  --color-shop_gold: #B8860B;
+  --color-shop_gold: #07464d;
   --color-shop_btn_dark_green:#063d29;
   --color-shop_light_bg: #f6f6f6;
   --color-shop_light_green: #3b9c3c;
-  --color-shop_light_gold: #FFD700;
+  --color-shop_light_gold: #0998a0;
   --color-shop_orange:  #fb6c08;
   --color-lightColor: #52525b;
   --color-darkColor: #151515;
   --color-lightOrange: #fca99b;
-  --color-banner-bg: #FAF6F0;
-  --color-shop-charcoal: #1F2933;
+  --color-banner-bg: #0998a0;
+  --color-shop-charcoal: #ffffff;
 
 }
 

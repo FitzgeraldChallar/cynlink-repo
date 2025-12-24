@@ -65,6 +65,11 @@ const Footer = () => {
             </div>
           </div>
         </Container>
+        <div className="py-6 border-t text-center text-sm text-gray-600">
+          <div>
+            &copy; {new Date().getFullYear()} <Logo className="text-sm" />. All rights reserved.
+          </div>
+        </div>
       </div>
 
       {/* Footer Bottom can go here */}
