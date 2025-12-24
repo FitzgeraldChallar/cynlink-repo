@@ -59,7 +59,7 @@ const Footer = () => {
                 <SubTitle>Newsletter</SubTitle>
                 <SubText>Subscribe to our Newsletter to receive updates and exclusive offers.</SubText>
                 <form className="space-y-3">
-                    <Input placeholder="Enter you email" />
+                    <Input placeholder="Enter you email" type="email" required />
                     <Button className="w-full">Subscribe</Button>
                 </form>
             </div>
