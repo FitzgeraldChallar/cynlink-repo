@@ -2,7 +2,6 @@ export const headerData = [
     {title: "Home", href: "/"},
     {title: "Shop", href: "/shop"},
     {title: "Blog", href: "Blog"},
-    {title: "Contact", href: "/contact"},
     {title: "Hot Deal", href: "Hot Deal"},
 ]
 
@@ -22,4 +21,13 @@ export const categoriesData = [
     {title: "Washing Machines", href: "washing-machines"},
     {title: "Kitchen Appliances", href: "kitchen-appliances"},
     {title: "Gadget Accessories", href: "gadget-accessories"},
+]
+
+export const productType = [
+    { title: "Cosmetics", value: "cosmetics" },
+    { title: "Appliances", value: "appliances" },
+    { title: "Mobile Phones", value: "mobile phones" },
+    { title: "Refrigerators", value: "refrigerators" },
+    { title: "Computers & Laptops", value: "commputers & laptops" },
+    { title: "Others", value: "others" }, 
 ]

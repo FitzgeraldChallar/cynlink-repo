@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.36.3",
@@ -28,6 +29,7 @@
     "cmdk": "^1.1.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.561.0",
+    "motion": "^12.23.26",
     "next": "16.0.8",
     "next-sanity": "^11.6.12",
     "react": "19.2.1",
