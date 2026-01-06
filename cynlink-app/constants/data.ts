@@ -28,6 +28,5 @@ export const productType = [
     { title: "Appliances", value: "appliances" },
     { title: "Mobile Phones", value: "mobile phones" },
     { title: "Refrigerators", value: "refrigerators" },
-    { title: "Computers & Laptops", value: "commputers & laptops" },
     { title: "Others", value: "others" }, 
 ]
