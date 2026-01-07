@@ -35,7 +35,7 @@ export const productType = defineType({
 
     defineField({
       name: "discount",
-      title: "Discount",
+      title: "Discount Percentage",
       type: "number",
       validation: (Rule) => Rule.required().min(0),
     }),
@@ -102,9 +102,8 @@ export const productType = defineType({
             list: [
                 { title: "Cosmetics", value: "cosmetics" },
                 { title: "Appliances", value: "appliances" },
-                { title: "Mobile Phones", value: "mobile phones" },
+                { title: "Phones", value: "phones" },
                 { title: "Refrigerators", value: "refrigerators" },
-                { title: "Computers & Laptops", value: "commputers & laptops" },
                 { title: "Others", value: "others" }, 
             ]
         }

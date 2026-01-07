@@ -10,6 +10,7 @@
   --color-shop_btn_dark_green:#063d29;
   --color-shop_light_bg: #f6f6f6;
   --color-shop_light_green: #3b9c3c;
+  --color-shop_lighter_green: #93D991;
   --color-shop_light_gold: #0998a0;
   --color-shop_orange:  #fb6c08;
   --color-lightColor: #52525b;
@@ -17,6 +18,10 @@
   --color-lightOrange: #fca99b;
   --color-banner-bg: #0998a0;
   --color-shop-charcoal: #ffffff;
+  --color-dark_blue: #6c7fd8;
+  --color-shop_lighter_bg: #f1f3f8;
+  --color-shop_light_text: #686e7d;
+  --color-shop_lighter_text: #ababab;
 
 }
 
@@ -130,6 +135,16 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+.clamp-safe {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
 
 @layer base {
   * {

@@ -26,7 +26,7 @@ export const categoriesData = [
 export const productType = [
     { title: "Cosmetics", value: "cosmetics" },
     { title: "Appliances", value: "appliances" },
-    { title: "Mobile Phones", value: "mobile phones" },
+    { title: "Phones", value: "phones" },
     { title: "Refrigerators", value: "refrigerators" },
     { title: "Others", value: "others" }, 
 ]

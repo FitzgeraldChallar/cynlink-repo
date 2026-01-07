@@ -21,7 +21,7 @@ const HomeBanner = () => {
           gap-6 md:gap-0
         ">
           <div className="text-center md:text-left space-y-5">
-            <Title>
+            <Title className="text-shop-charcoal">
               Get a Deal for Up To 50% off on <br className="hidden sm:block" />
               Selected Products This Christmas!
             </Title>
