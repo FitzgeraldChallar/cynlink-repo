@@ -36,6 +36,7 @@ const ProductGrid = () => {
   const params = { variant: selectedTab.toLowerCase() };
 
   useEffect(() => {
+    if (!selectedTab) return; // don't fetch until selectedTab exists
     const fetchData = async () => {
       setLoading(true);
       try {
