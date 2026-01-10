@@ -23,7 +23,7 @@ const HomeBanner = () => {
           <div className="text-center md:text-left space-y-5">
             <Title className="text-shop-charcoal">
               Get a Deal for Up To 50% off on <br className="hidden sm:block" />
-              Selected Products This Christmas!
+              Selected Products!
             </Title>
 
             <Link

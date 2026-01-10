@@ -269,13 +269,7 @@ export type Product = {
   description?: string;
   inStock?: boolean;
   status?: "new" | "hot" | "sale";
-  variant?:
-    | "cosmetics"
-    | "appliances"
-    | "mobile phones"
-    | "refrigerators"
-    | "commputers & laptops"
-    | "others";
+  variant?: "cosmetics" | "appliances" | "phones" | "refrigerators" | "others";
   isFeatured?: boolean;
 };
 

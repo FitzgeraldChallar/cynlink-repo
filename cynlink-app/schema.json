@@ -1594,15 +1594,11 @@
             },
             {
               "type": "string",
-              "value": "mobile phones"
+              "value": "phones"
             },
             {
               "type": "string",
               "value": "refrigerators"
-            },
-            {
-              "type": "string",
-              "value": "commputers & laptops"
             },
             {
               "type": "string",
