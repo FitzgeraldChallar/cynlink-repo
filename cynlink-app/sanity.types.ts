@@ -301,6 +301,7 @@ export type Category = {
   _type: "category";
   _createdAt: string;
   _updatedAt: string;
+  productCount?: number; 
   _rev: string;
   title?: string;
   slug?: Slug;
