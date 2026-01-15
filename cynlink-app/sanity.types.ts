@@ -301,13 +301,13 @@ export type Category = {
   _type: "category";
   _createdAt: string;
   _updatedAt: string;
-  productCount?: number; 
   _rev: string;
   title?: string;
   slug?: Slug;
   description?: string;
   range?: number;
   featured?: boolean;
+  productCount?: number;
   image?: {
     asset?: {
       _ref: string;
@@ -441,3 +441,9 @@ export type AllSanitySchemaTypes =
   | Geopoint;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+  T & {
+    _key: string;
+  }
+>;
