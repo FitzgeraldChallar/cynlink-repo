@@ -1,5 +1,6 @@
+import { Product } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
-import { BRANDS_QUERY, LATEST_BLOG_QUERY } from "@/sanity/queries/query";
+import { BRANDS_QUERY, DEAL_PRODUCTS, LATEST_BLOG_QUERY } from "@/sanity/queries/query";
 
 
 const getCategories = async (quantity?:number) => {
@@ -44,4 +45,14 @@ const getLatestBlogs = async () => {
   }
 };
 
-export {getCategories, getAllBrands, getLatestBlogs};
+const getDealProducts = async (): Promise<Product[]> => {
+  try {
+    const { data } = await sanityFetch({ query: DEAL_PRODUCTS });
+    return data ?? [];
+  } catch (error) {
+    console.log("Error fetching deal products", error);
+    return [];
+  }
+};
+
+export {getCategories, getAllBrands, getLatestBlogs, getDealProducts};

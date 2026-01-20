@@ -1,4 +1,3 @@
-// components/header.tsx
 import React from "react";
 import Container from "@/components/container";
 import Logo from "@/components/logo";

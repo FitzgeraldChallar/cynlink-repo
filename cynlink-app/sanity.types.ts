@@ -517,11 +517,17 @@ export type LATEST_BLOG_QUERY_RESULT = Array<{
   body?: BlockContent;
 }>;
 
+// Source: sanity\queries\query.ts
+// Variable: DEAL_PRODUCTS
+// Query: *[type == 'product' && status == 'hot'] | order(name asc){    ...,"categories": categories[]->title}
+export type DEAL_PRODUCTS_RESULT = Array<never>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "brand"] | order(name asc) [0...8]\n': BRANDS_QUERY_RESULT;
     "*[_type == 'blog' && isLatest == true] | order(name asc) [0...4] {\n   ...,\n   blogcategories[]->{\n   title\n  }\n  }": LATEST_BLOG_QUERY_RESULT;
+    "*[type == 'product' && status == 'hot'] | order(name asc){\n    ...,\"categories\": categories[]->title}": DEAL_PRODUCTS_RESULT;
   }
 }

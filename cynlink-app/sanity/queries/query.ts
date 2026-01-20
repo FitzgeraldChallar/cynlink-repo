@@ -4,6 +4,7 @@ import { LATEST } from "sanity";
 export const BRANDS_QUERY = defineQuery(`
   *[_type == "brand"] | order(name asc) [0...8]
 `);
+
 export const LATEST_BLOG_QUERY = defineQuery(
   `*[_type == 'blog' && isLatest == true] | order(name asc) [0...4] {
    ...,
@@ -12,3 +13,11 @@ export const LATEST_BLOG_QUERY = defineQuery(
   }
   }`
 );
+
+export const DEAL_PRODUCTS = defineQuery(
+  `*[_type == "product" && defined(status) && status match "hot"] | order(name asc) {
+    ...,
+    "category": category[]->title
+  }`
+);
+

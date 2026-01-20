@@ -8,7 +8,6 @@ import { boy } from "@/images";
 const HomeBanner = () => {
   return (
     <div className="py-10 md:py-0">
-      <Container>
         <div className="
           bg-banner-bg 
           rounded-lg 
@@ -55,7 +54,6 @@ const HomeBanner = () => {
             />
           </div>
         </div>
-      </Container>
     </div>
   );
 };
