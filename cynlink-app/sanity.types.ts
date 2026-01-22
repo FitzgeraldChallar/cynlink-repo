@@ -246,6 +246,7 @@ export type Product = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
+    title?: string;
   }>;
   brand?: {
     _ref: string;
@@ -519,8 +520,91 @@ export type LATEST_BLOG_QUERY_RESULT = Array<{
 
 // Source: sanity\queries\query.ts
 // Variable: DEAL_PRODUCTS
-// Query: *[type == 'product' && status == 'hot'] | order(name asc){    ...,"categories": categories[]->title}
-export type DEAL_PRODUCTS_RESULT = Array<never>;
+// Query: *[_type == "product" && defined(status) && status match "hot"] | order(name asc) {    ...,    "category": category[]->title  }
+export type DEAL_PRODUCTS_RESULT = Array<{
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  price?: number;
+  discount?: number;
+  stock?: number;
+  category: Array<string | null> | null;
+  brand?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "brand";
+  };
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  description?: string;
+  inStock?: boolean;
+  status?: "hot" | "new" | "sale";
+  variant?: "appliances" | "cosmetics" | "others" | "phones" | "refrigerators";
+  isFeatured?: boolean;
+}>;
+
+// Source: sanity\queries\query.ts
+// Variable: PRODUCT_BY_SLUG_QUERY
+// Query: *[_type == "product" && slug.current == $slug] | order(name asc) [0]
+export type PRODUCT_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  price?: number;
+  discount?: number;
+  stock?: number;
+  category?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  brand?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "brand";
+  };
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  description?: string;
+  inStock?: boolean;
+  status?: "hot" | "new" | "sale";
+  variant?: "appliances" | "cosmetics" | "others" | "phones" | "refrigerators";
+  isFeatured?: boolean;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -528,6 +612,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "brand"] | order(name asc) [0...8]\n': BRANDS_QUERY_RESULT;
     "*[_type == 'blog' && isLatest == true] | order(name asc) [0...4] {\n   ...,\n   blogcategories[]->{\n   title\n  }\n  }": LATEST_BLOG_QUERY_RESULT;
-    "*[type == 'product' && status == 'hot'] | order(name asc){\n    ...,\"categories\": categories[]->title}": DEAL_PRODUCTS_RESULT;
+    '*[_type == "product" && defined(status) && status match "hot"] | order(name asc) {\n    ...,\n    "category": category[]->title\n  }': DEAL_PRODUCTS_RESULT;
+    '*[_type == "product" && slug.current == $slug] | order(name asc) [0]': PRODUCT_BY_SLUG_QUERY_RESULT;
   }
 }

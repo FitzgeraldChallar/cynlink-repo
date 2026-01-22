@@ -17,7 +17,56 @@ export const LATEST_BLOG_QUERY = defineQuery(
 export const DEAL_PRODUCTS = defineQuery(
   `*[_type == "product" && defined(status) && status match "hot"] | order(name asc) {
     ...,
-    "category": category[]->title
+    category[] { 
+      _ref, 
+      _type, 
+      _key, 
+      "title": @->title 
+    }
   }`
 );
+
+
+export const PRODUCT_BY_SLUG_QUERY = defineQuery(
+  `*[_type == "product" && slug.current == $slug][0]{
+    _id,
+    _type,
+    name,
+    slug,
+    price,
+    discount,
+    stock,
+    status,
+    category[]{
+      _key,
+      _type,
+      _ref,
+      "title": @->title
+    },
+    brand,
+    description,
+    isFeatured,
+    variant,
+    images[]{
+      _key,
+      _type,
+      asset->{ _ref, _type, url },
+      crop,
+      hotspot
+    }
+  }`
+);
+
+export const BRAND_QUERY = defineQuery(`
+  *[_type == "product" && slug.current == $slug][0]{
+    "brand": brand->{
+      title,
+      slug,
+      description,
+      image
+    }
+  }
+`);
+
+
 
