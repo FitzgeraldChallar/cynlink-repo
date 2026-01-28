@@ -20,7 +20,7 @@ const ProductCharacteristics = async ({
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
-        <AccordionTrigger>
+        <AccordionTrigger className="font-bold">
           {product?.name}: Characteristics
         </AccordionTrigger>
 
@@ -28,20 +28,20 @@ const ProductCharacteristics = async ({
             <p className="flex items-center justify-between">
               Brand:{" "}
               {brand && (
-                <span className="font-semibold tracking-wide">{brand.title}</span>
+                <span className="font-semibold tracking-wide text-bold">{brand.title}</span>
               )}
             </p>
             <p className="flex items-center justify-between">
               Collection:{" "}
-                <span className="font-semibold tracking-wide">2025/2026</span>
+                <span className="font-semibold tracking-wide text-bold">2025/2026</span>
             </p>
             <p className="flex items-center justify-between">
               Type:{" "}
-                <span className="font-semibold tracking-wide">{product?.variant}</span>
+                <span className="font-semibold tracking-wide text-bold">{product?.variant}</span>
             </p>
             <p className="flex items-center justify-between">
               Stock:{" "}
-                <span className="font-semibold tracking-wide">
+                <span className="font-semibold tracking-wide text-bold">
                     {product?.stock ? "Available" : "Out of Stock"}
                 </span>
             </p>

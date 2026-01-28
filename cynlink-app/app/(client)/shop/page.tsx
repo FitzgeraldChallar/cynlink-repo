@@ -1,8 +1,14 @@
 import React from 'react'
+import { getCategories, getAllBrands } from '@/sanity/queries';
+import Shop from '@/components/shop';
 
-function ShopPage() {
+const ShopPage = async () => {
+  const categories = await getCategories();
+  const brands = await getAllBrands();
   return (
-    <div>Shop Page</div>
+    <div className="bg-white">
+      <Shop categories={categories} brands={brands} />
+    </div>
   )
 }
 

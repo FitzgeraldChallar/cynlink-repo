@@ -14,7 +14,7 @@ const NoProductAvailable = ({
     return (
         <div
             className={cn(
-                "flex flex-col items-center justify-center py-10 min-h-80 space-y-4 text-center bg-gray-100 rounded-lg w-full mt-10",
+                "flex flex-col items-center justify-center py-10 min-h-80 space-y-4 text-center bg-gray-100 rounded-lg w-full mt-10 font-sans",
                 className
             )}
         >
@@ -23,7 +23,7 @@ const NoProductAvailable = ({
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.5 }}
             >
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-bold text-gray-800 font-sans">
                     No Product Available
                 </h2>
             </motion.div>
@@ -32,10 +32,10 @@ const NoProductAvailable = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-gray-600"
+              className="text-gray-600 font-sans"
             >
                 We&apos;re sorry, but there are no products matching on{" "}
-                <span className="text-base font-semibold text-darkColor">
+                <span className="text-base font-semibold text-darkColor font-sans">
                     {selectedTab}
                 </span>{" "}
                 criteria at the moment. 
@@ -44,7 +44,7 @@ const NoProductAvailable = ({
             <motion.div 
                animate={{ scale: [1, 1.1, 1] }}
                transition={{ repeat: Infinity, duration: 1.5 }}
-               className="flex items-center space-x-2 text-shop_gold"
+               className="flex items-center space-x-2 text-shop_gold font-sans"
             >
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span>We&apos;re restocking shortly</span>
@@ -54,7 +54,7 @@ const NoProductAvailable = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-sm text-gray-500"
+              className="text-sm text-gray-500 font-sans"
             >
                 Please check back or explore our other product categories. 
             </motion.p>
