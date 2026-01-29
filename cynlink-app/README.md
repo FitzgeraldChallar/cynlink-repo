@@ -18,6 +18,8 @@
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
 - **Deployment:** [Vercel](https://vercel.com/)
+- **User Management & Auth:** [Clerk](https://clerk.com/)
+- **Content Management:** [Sanity](https://sanity.io/)
 
 ---
 
