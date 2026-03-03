@@ -12,6 +12,7 @@ import { RxBorderSplit } from "react-icons/rx";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbTruckDelivery} from "react-icons/tb";
 import { FiShare2 } from "react-icons/fi";
+import AddToWishlistButton from '@/components/addtowishlistbutton';
 
 
 const SingleProductPage = async ({
@@ -58,11 +59,9 @@ return (
             </p>
            </div>
            <div className="flex items-center gap-2.5 lg:gap-5">
-            <div className="flex-1">
-                <AddToCartButton product={product} />
+              <AddToCartButton product={product} />
+              <FavoriteButton showProduct={true} product={product} />
             </div>
-            <FavoriteButton showProduct={true} product={product} />
-           </div>
            <ProductCharacteristics product={product} />
            <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-200 py-5 -mt-2">
             <div className="flex items-center gap-2 text-sm text-black hover:text-red-600 hoverEffect">

@@ -6,6 +6,8 @@ import { ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import useStore from '@/store';
 import toast from "react-hot-toast";
+import PriceFormatter from './priceformatter';
+import { QuantityButtons } from './QuantityButtons';
 
 interface Props {
     product: Product;
@@ -19,11 +21,25 @@ const AddToCartButton = ({ product, className}: Props) => {
     const handleAddToCart = () => {
         if ((product?.stock as number)>itemCount) {
           addItem(product);
-          toast.success(`${product?.name?.substring(0,12)}... added successfully`);
+          toast.success(`${product?.name?.substring(0,12)}... added successfully!`);
+        } else {
+          toast.error("can not add more than available stock");
         }
     };
   return (
    <div className="w-full h-12 flex items-center">
+    {itemCount ? (
+      <div className="text-sm w-full">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-darkColor/80">Quantity</span>
+          <QuantityButtons product={product} />
+        </div>
+        <div className="flex items-center justify-between border-t pt-1">
+          <span className="text-xs font-semibold">Subtotal</span>
+          <PriceFormatter amount={product?.price ? product?.price * itemCount : 0} />
+        </div>
+      </div>
+    ) : (
      <Button
        onClick={handleAddToCart}
        disabled={isOutOfStock}
@@ -34,6 +50,7 @@ const AddToCartButton = ({ product, className}: Props) => {
      >
       <ShoppingBag className="w-4 h-4" /> {isOutOfStock ? "Out of Stock" : "Add to Cart"}
      </Button>
+    )}
    </div>
   );
    
