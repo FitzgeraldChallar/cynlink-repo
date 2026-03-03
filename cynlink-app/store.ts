@@ -22,7 +22,7 @@ interface StoreState {
     addToFavorite: (product: Product) => Promise<void>;
     removeFromFavorite: (productId: string) => void;
     resetFavorite: () => void;
-}
+} 
 
 const useStore=create<StoreState>()(
     persist((set, get)=>({
@@ -119,4 +119,4 @@ const useStore=create<StoreState>()(
   )
 );
 
-
+export default useStore;
