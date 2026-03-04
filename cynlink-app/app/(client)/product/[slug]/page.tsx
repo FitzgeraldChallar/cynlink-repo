@@ -13,6 +13,7 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbTruckDelivery} from "react-icons/tb";
 import { FiShare2 } from "react-icons/fi";
 import AddToWishlistButton from '@/components/addtowishlistbutton';
+import { notFound } from 'next/navigation';
 
 
 const SingleProductPage = async ({
@@ -22,6 +23,9 @@ const SingleProductPage = async ({
 }) => {
     const { slug } = await params;
     const product = await getProductBySlug(slug);
+    if (!product) {
+        return notFound();
+    }
 return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10">
         {product?.images && (
