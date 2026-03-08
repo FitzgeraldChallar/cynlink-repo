@@ -39,7 +39,7 @@ const EmptyCart = () => {
 
           {/* Button */}
           <Button       
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/shop")}
             className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-xl transition duration-200">
             Discover Products
           </Button>
