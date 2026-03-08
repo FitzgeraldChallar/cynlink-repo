@@ -38,7 +38,7 @@ const NoAccess = () => {
         </div>
 
         {/* Create Account Button */}
-        <SignUpButton>
+        <SignUpButton mode="modal">
          <Button
           className="block bg-white w-full border border-gray-300 py-2.5 rounded-md font-medium hover:bg-gray-50 transition text-black"
          >
