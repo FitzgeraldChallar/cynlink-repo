@@ -4,16 +4,23 @@ import AddToWishlistButton from "@/components/addtowishlistbutton";
 import Container from "@/components/container";
 import EmptyCart from "@/components/EmptyCart";
 import NoAccess from "@/components/noaccess";
+import PriceFormatter from "@/components/priceformatter";
+import QuantityButtons from "@/components/QuantityButtons";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Separator } from "@/components/ui/separator";
 import { Title } from "@/components/ui/text";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Address } from "@/sanity.types";
+import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import useStore from "@/store";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { ShoppingBag, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const CartPage = () => {
@@ -30,7 +37,36 @@ const CartPage = () => {
   const groupedItems = useStore((state) => state.getGroupedItems());
   const { isSignedIn } = useAuth();
   const { user } = useUser();
-  const [selectedAddress, setSelectedAddresses] = useState<Address | null>(null);
+  const [addresses, setAddresses] = useState<Address[] | null>(null)
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+  const fetchAddresses=async()=>{
+    setLoading(true)
+    try {
+      const query=`*[_type == "address"] | order(publishedAt desc)`;
+      const data = await client.fetch(query);
+      setAddresses(data);
+      const defaultAddress = data.find((addr: any) => addr.default);
+      if (defaultAddress) {
+        setSelectedAddress(defaultAddress);
+      } else if (data.length > 0) {
+        setSelectedAddress(data[0]); // Optional: select first address if no default
+      }
+    } catch (error) {
+      console.log("Addresses fetching error:", error)
+    } finally {
+      setLoading(false)
+    }
+  };
+  useEffect(() =>{
+    fetchAddresses();
+  },[])
+  const handleResetCart=()=>{
+    const confirmed = window.confirm("Are your sure you want to reset your cart?")
+    if (confirmed) {
+      resetCart();
+      toast.success("Cart reset successfully")
+    }
+  }
 
   return (
     <div className="bg-gray-50 pb-52 md:pb-10">
@@ -111,19 +147,81 @@ const CartPage = () => {
                               </TooltipProvider>
                             </div>
                           </div>
-
+                          <div className="flex flex-col items-start justify-between h-36 md:h-44 p-0.5 md:p-1">
+                            <PriceFormatter 
+                              amount={(product?.price as number) * itemCount}
+                              className="font-bold text-lg"
+                            />
+                            <QuantityButtons product={product} />
+                          </div>
                         </div>
                       );
                     })}
-
+                    <Button 
+                      onClick={(handleResetCart)}
+                      className="m-5 font-semibold"
+                      variant="destructive"
+                    >
+                      Reset Cart
+                    </Button>
                   </div>
                 </div>
 
                 {/* SUMMARY */}
                 <div>
-                  summary (checkout component)
+                  <div className="lg:col-span-2">
+                    <div className="hidden md:inline-block w-full bg-white p-6 rounded-lg border">
+                      <h2 className="text-xl font-sans font-semibold mb-4">Order Summary</h2>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span>SubTotal</span>
+                          <PriceFormatter amount={getSubTotalPrice()} />
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span>Discount</span>
+                          <PriceFormatter amount={getSubTotalPrice() - getTotalPrice()} />
+                        </div>
+                        <Separator />
+                        <div className="flex items-center justify-between font-semibold text-lg">
+                          <span>Total</span>
+                          <PriceFormatter 
+                            amount={useStore?.getState().getTotalPrice()} 
+                            className="text-lg font-bold text-black"
+                          />
+                        </div>
+                        <Button className="w-full rounded-full font-semibold tracking-wide bg-shop_gold hoverEffect">
+                          {loading ?"Please wait..." : "Proceed to Checkout!"}
+                        </Button>
+                      </div>
+                    </div>
+                    {addresses && <div className="bg-white rounded-md mt-5">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="font-sans">Delivery Address</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <RadioGroup defaultValue={addresses?.find((addr) => addr.default)?._id.toString()}>
+                            {addresses?.map((address)=>(
+                              <div 
+                                key={address?._id}
+                                onClick={()=>setSelectedAddress(address)}
+                                className={`flex items-center space-x-2 mb-4 cursor-pointer ${selectedAddress?._id === address?._id && "text-shop_gold"}`}
+                              >
+                                <RadioGroupItem value={address?._id.toString()} />
+                              </div>
+                            ))}
+                          </RadioGroup>
+                        </CardContent>
+                      </Card>
+                    </div>}
+                  </div>
                 </div>
-
+                {/* Order summary for mobile view */}
+                <div className="md:hidden fixed bottom-0 left-0 w-full bg-white pt-2">
+                  <div className="bg-white p-4 rounded-lg border mx-4">
+                    <h2>Order Summary</h2>
+                  </div>
+                </div>
               </div>
             </>
           ) : (

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate"
+    "typegen": "dotenv -e .env -- npx sanity schema extract && dotenv -e .env -- npx sanity typegen generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.36.3",
@@ -28,6 +28,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "dayjs": "^1.11.19",
+    "dotenv-cli": "^11.0.0",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.561.0",
     "motion": "^12.23.26",
