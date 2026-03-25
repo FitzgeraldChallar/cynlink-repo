@@ -235,6 +235,7 @@ export type Product = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    title?: string;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
   }>;

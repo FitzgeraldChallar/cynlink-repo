@@ -16,11 +16,23 @@ const ProductCard = ({ product }: { product: Product }) => {
     : [];
 
   return (
-    <Link
-      href={`/product/${product.slug?.current}`} // <-- clickable navigation
-      className="block" // ensures the whole card is clickable
-    >
-      <div className="text-sm border border-dark_blue/20 rounded-md bg-white group">
+    <div className="relative text-sm border border-dark_blue/20 rounded-md bg-white group">
+      {/* HOT badge - outside main link to avoid nested <a> */}
+      {product?.status === "hot" && (
+        <Link
+          href="/deal"
+          className="absolute top-2 left-2 z-10 border border-shop_orange/50 p-1 rounded-full group-hover:border-shop_orange hover:text-shop_gold hoverEffect"
+        >
+          <Flame
+            size={18}
+            fill="#fb6c08"
+            className="text-shop_orange/50 group-hover:text-shop_orange hoverEffect"
+          />
+        </Link>
+      )}
+
+      {/* Main clickable product card */}
+      <Link href={`/product/${product.slug?.current}`} className="block">
         <div className="relative group aspect-square bg-shop_light_bg rounded-lg overflow-hidden">
           {image && (
             <Image
@@ -28,9 +40,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               alt={product?.name ?? "Product Image"}
               fill
               className={`object-contain p-10 overflow-hidden transition-transform bg-shop_light_bg hoverEffect ${
-                product?.stock !== 0
-                  ? "group-hover:scale-105"
-                  : "opacity-50"
+                product?.stock !== 0 ? "group-hover:scale-105" : "opacity-50"
               }`}
               sizes="(max-width: 768px) 100vw, 25vw"
               loading="lazy"
@@ -50,25 +60,12 @@ const ProductCard = ({ product }: { product: Product }) => {
               New
             </p>
           )}
-
-          {product?.status === "hot" && (
-            <Link
-              href="/deal"
-              className="absolute top-2 left-2 z-10 border border-shop_orange/50 p-1 rounded-full group-hover:border-shop_orange hover:text-shop_gold hoverEffect"
-            >
-              <Flame
-                size={18}
-                fill="#fb6c08"
-                className="text-shop_orange/50 group-hover:text-shop_orange hoverEffect"
-              />
-            </Link>
-          )}
         </div>
 
         <div className="p-3 flex flex-col">
           {categories.length > 0 && (
             <p className="uppercase line-clamp-1 text-xs text-shop_light_text">
-              {categories.map(cat => cat.title).join(", ")}
+              {categories.map((cat) => cat.title).join(", ")}
             </p>
           )}
 
@@ -91,9 +88,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 />
               ))}
             </div>
-            <p className="text-xs text-shop_light_text tracking-wide">
-              5 Reviews
-            </p>
+            <p className="text-xs text-shop_light_text tracking-wide">5 Reviews</p>
           </div>
 
           <div className="flex items-center gap-2.5">
@@ -105,9 +100,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                   : "text-shop_light_gold/80 font-semibold"
               }`}
             >
-              {product?.stock && product.stock > 0
-                ? product.stock
-                : "unavailable"}
+              {product?.stock && product.stock > 0 ? product.stock : "unavailable"}
             </p>
           </div>
 
@@ -122,8 +115,8 @@ const ProductCard = ({ product }: { product: Product }) => {
             className="w-full sm:w-36 rounded-full"
           />
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
