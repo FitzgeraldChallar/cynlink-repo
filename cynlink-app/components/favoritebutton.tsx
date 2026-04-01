@@ -34,8 +34,8 @@ const FavoriteButton = ({
         toast.success(isNowFavorite ? "product removed successfully!" : "product added successfully!");
       });
     }
-  };
-  return (
+  }; 
+  return ( 
     <>
       {!showProduct ? <Link href={"/wishlist"} className="group relative">
         <Heart className="w-5 h-5 hover:text-shop_light_gold hoverEffect" />
@@ -43,7 +43,7 @@ const FavoriteButton = ({
           {favoriteProduct?.length ? favoriteProduct?.length : 0}
         </span>
       </Link>
-      :
+      : 
         <button onClick={handleFavorite} className="group relative hover:text-shop_light_gold hoverEffect border border-shop_light_gold/80 hover:border-shop_light_gold p-1.5 rounded-sm">
           {existingProduct ? (
             <Heart 

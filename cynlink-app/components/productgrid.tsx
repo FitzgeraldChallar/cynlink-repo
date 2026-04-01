@@ -65,7 +65,7 @@ const ProductGrid = () => {
           </div>
         </div>
       ) : products?.length ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
           {products.map((product) => (
             // Use _id as unique key for list
             <AnimatePresence key={product._id}>
