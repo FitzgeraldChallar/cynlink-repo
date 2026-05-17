@@ -68,6 +68,42 @@ const CartPage = () => {
     }
   }
 
+  const handleWhatsAppCheckout = () => {
+    if (!groupedItems?.length) return;
+
+    const phoneNumber = "231775008356"; 
+
+    const orderDetails = groupedItems
+      .map(({ product }) => {
+       const quantity = getItemCount(product?._id);
+
+      return `
+🛍 Product: ${product?.name}
+📦 Variant: ${product?.variant}
+🔢 Quantity: ${quantity}
+💵 Price: $${(product?.price as number) * quantity}
+`;
+      })
+      .join("\n-------------------\n");
+
+    const total = getTotalPrice();
+
+    const message = `
+     Hello, I want to place an order.
+
+     ${orderDetails}
+
+
+     💰 Total: $${total}
+    `;
+
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+    )}`;
+
+    window.open(whatsappURL, "_blank");
+  };
+
   return (
     <div className="bg-gray-50 pb-52 md:pb-10">
       {isSignedIn ? (
@@ -189,8 +225,11 @@ const CartPage = () => {
                             className="text-lg font-bold text-black"
                           />
                         </div>
-                        <Button className="w-full rounded-full font-semibold tracking-wide bg-shop_gold hoverEffect">
-                          {loading ?"Please wait..." : "Proceed to Checkout!"}
+                        <Button
+                          onClick={handleWhatsAppCheckout}
+                          className="w-full rounded-full font-semibold tracking-wide bg-shop_gold hoverEffect"
+                        >
+                          {loading ? "Please wait..." : "Proceed to Checkout!"}
                         </Button>
                       </div>
                     </div>
