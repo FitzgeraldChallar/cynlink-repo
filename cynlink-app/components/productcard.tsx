@@ -17,7 +17,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   return (
     <div className="relative text-sm border border-dark_blue/20 rounded-md bg-white group">
-      {/* HOT badge - outside main link to avoid nested <a> */}
+      {/* HOT badge */}
       {product?.status === "hot" && (
         <Link
           href="/deal"
@@ -31,7 +31,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         </Link>
       )}
 
-      {/* Main clickable product card */}
+      {/* ONLY IMAGE IS CLICKABLE */}
       <Link href={`/product/${product.slug?.current}`} className="block">
         <div className="relative group aspect-square bg-shop_light_bg rounded-lg overflow-hidden">
           {image && (
@@ -61,61 +61,66 @@ const ProductCard = ({ product }: { product: Product }) => {
             </p>
           )}
         </div>
-
-        <div className="p-3 flex flex-col">
-          {categories.length > 0 && (
-            <p className="uppercase line-clamp-1 text-xs text-shop_light_text">
-              {categories.map((cat) => cat.title).join(", ")}
-            </p>
-          )}
-
-          <Title className="text-sm line-clamp-1">
-            {product?.name ?? "Unnamed Product"}
-          </Title>
-
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-0.5">
-              {[...Array(5)].map((_, index) => (
-                <StarIcon
-                  key={index}
-                  size={8}
-                  className={
-                    index < 4
-                      ? "text-shop_lighter_green"
-                      : "text-shop_lighter_text"
-                  }
-                  fill={index < 4 ? "#93D991" : "#ababab"}
-                />
-              ))}
-            </div>
-            <p className="text-xs text-shop_light_text tracking-wide">5 Reviews</p>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            <p className="font-medium">In Stock:</p>
-            <p
-              className={`${
-                product?.stock === 0
-                  ? "text-red-600"
-                  : "text-shop_light_gold/80 font-semibold"
-              }`}
-            >
-              {product?.stock && product.stock > 0 ? product.stock : "unavailable"}
-            </p>
-          </div>
-
-          <PriceView
-            price={product?.price}
-            discount={product?.discount}
-            className="text-sm"
-          />
-
-          <AddToCartButton
-            product={product}
-            className="w-full sm:w-36 rounded-full"
-          />
-        </div>
       </Link>
+
+      {/* PRODUCT INFO IS NO LONGER INSIDE THE LINK */}
+      <div className="p-3 flex flex-col">
+        {categories.length > 0 && (
+          <p className="uppercase line-clamp-1 text-xs text-shop_light_text">
+            {categories.map((cat) => cat.title).join(", ")}
+          </p>
+        )}
+
+        <Title className="text-sm line-clamp-1">
+          {product?.name ?? "Unnamed Product"}
+        </Title>
+
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0.5">
+            {[...Array(5)].map((_, index) => (
+              <StarIcon
+                key={index}
+                size={8}
+                className={
+                  index < 4
+                    ? "text-shop_lighter_green"
+                    : "text-shop_lighter_text"
+                }
+                fill={index < 4 ? "#93D991" : "#ababab"}
+              />
+            ))}
+          </div>
+          <p className="text-xs text-shop_light_text tracking-wide">
+            5 Reviews
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2.5">
+          <p className="font-medium">In Stock:</p>
+          <p
+            className={`${
+              product?.stock === 0
+                ? "text-red-600"
+                : "text-shop_light_gold/80 font-semibold"
+            }`}
+          >
+            {product?.stock && product.stock > 0
+              ? product.stock
+              : "unavailable"}
+          </p>
+        </div>
+
+        <PriceView
+          price={product?.price}
+          discount={product?.discount}
+          className="text-sm"
+        />
+
+        <AddToCartButton
+          product={product}
+          className="w-full sm:w-36 rounded-full"
+        />
+      </div>
     </div>
   );
 };

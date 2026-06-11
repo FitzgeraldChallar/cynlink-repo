@@ -11,17 +11,17 @@ interface ContactItemData {
 const data: ContactItemData[] = [
     {
         title: "Visit Us",
-        subtitle: "123 Main Street, Monrovia, Liberia",
+        subtitle: "Fiamah, Sinkor, Monrovia, Liberia",
         icon: <MapPin className="w-5 h-5" />
     },
     {
         title: "Email Us",
-        subtitle: "info@cynlink.com",
+        subtitle: "cynlink.paye@gmail.com",
         icon: <Mail className="w-5 h-5" />
     },
     {
         title: "Call Us",
-        subtitle: "+231 88 736 5288",
+        subtitle: "+231 775 008 356",
         icon: <Phone className="w-5 h-5" />
     },
     {
